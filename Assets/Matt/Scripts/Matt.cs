@@ -28,6 +28,7 @@ public class Matt : MonoBehaviour {
     void Update(){
         if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)){
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(movingSpeed * Time.deltaTime, 0));
+            gameObject.GetComponent<Animator>().SetBool("moving", true);
         }
 
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)){
@@ -38,6 +39,7 @@ public class Matt : MonoBehaviour {
 
         if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)){
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-movingSpeed * Time.deltaTime, 0));
+            gameObject.GetComponent<Animator>().SetBool("moving", true);
         }
 
         if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)){
