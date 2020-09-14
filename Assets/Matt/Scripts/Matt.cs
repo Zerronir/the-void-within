@@ -13,6 +13,8 @@ public class Matt : MonoBehaviour {
     public int magicDeffense = 50;
     public int magicMana = 50;
 
+    private Rigidbody2D rb2d;
+
     private Animator anim;
     private float x, y;
     public bool moving;
@@ -22,30 +24,15 @@ public class Matt : MonoBehaviour {
     // Start is called before the first frame update
     void Start(){
         anim = GetComponent<Animator>();
+        rb2d = GetComponent<Rigidbody2D> ();
     }
 
     // Update is called once per frame
     void Update(){
-        if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)){
-            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(movingSpeed * Time.deltaTime, 0));
-            gameObject.GetComponent<Animator>().SetBool("moving", true);
-        }
-
-        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)){
-            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, movingSpeed * Time.deltaTime));
-            gameObject.GetComponent<Animator>().SetBool("moving", true);
-            gameObject.GetComponent<SpriteRenderer>().flipX = false;
-        }
-
-        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)){
-            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-movingSpeed * Time.deltaTime, 0));
-            gameObject.GetComponent<Animator>().SetBool("moving", true);
-        }
-
-        if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)){
-            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, -movingSpeed * Time.deltaTime));
-            gameObject.GetComponent<Animator>().SetBool("moving", true);
-            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        
+        if(Input.GetKey(KeyCode.D)){
+             Vector3 horizontal = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+             transform.position = transform.position + horizontal * Time.deltaTime;
         }
 
     }
